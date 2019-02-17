@@ -14,6 +14,7 @@ class Purchase extends Component {
     async submit(ev) {
         ev.preventDefault();
         let { token } = await this.props.stripe.createToken();
+        console.log(token)
         let response = await fetch("/charge", {
             method: "POST",
             headers: { "Content-Type": "text/plain" },
