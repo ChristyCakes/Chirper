@@ -17,7 +17,7 @@ class Home extends Component {
     componentDidMount() {
         fetch('/api/chirps')
             .then(response => response.json())    
-            .then(data => this.setState({ chirps: data.results }))
+            .then(data => this.setState({ chirps: data.results }))      // dot results for postgres destructuring
             .catch(err => {
                 alert("Error: Chirps failed to load");
                 console.log(err);

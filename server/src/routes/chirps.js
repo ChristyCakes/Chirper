@@ -17,8 +17,7 @@ router.get('/:id?', async (req, res) => {
   if (id) {
     try {
       const client = await pool.connect()
-      // const result = await client.query('SELECT * FROM chirps WHERE id = ?', [id]);
-      const result = await client.query(`SELECT * FROM chirps WHERE id = ${id}`);
+      const result = await client.query('SELECT * FROM chirps WHERE id = $1', [id]);
       const results = { 'results': (result) ? result.rows : null };
       res.send(results)
       client.release();
