@@ -1,7 +1,6 @@
 // ChirpContainer component get requests single chirp
 
 import React, { Component } from 'react';
-// import 'isomorphic-fetch';
 import Chirp from './chirp';
 
 class ChirpContainer extends Component {
@@ -14,12 +13,16 @@ class ChirpContainer extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://127.0.0.1:3000/api/chirps/${this.props.match.params.id}`)
+        fetch(`/api/chirps/${this.props.match.params.id}`)
             .then(response => response.json())
             .then(data => {
+                // different destructuring for postgres
+                let results = data.results[0]
                 this.setState({
-                    user: data.name,
-                    text: data.text
+                    // user: data.results.name,
+                    // text: data.results.text
+                    user: results.name,
+                    text: results.text
                 })
             })
             .catch(err => {

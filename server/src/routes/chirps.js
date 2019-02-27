@@ -6,30 +6,45 @@ let router = Router();
 // Postgresql connection
 const { Pool } = require('pg');
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
 })
 
-router.get('/', async (req, res) => {
+
+
+router.get('/:id?', async (req, res) => {
+  let id = req.params.id;
+  if (id) {
     try {
       const client = await pool.connect()
-      const result = await client.query('SELECT * FROM chirps');
-      const results = { 'results': (result) ? result.rows : null};
-      res.render('api/chirps', results );
+      // const result = await client.query('SELECT * FROM chirps WHERE id = ?', [id]);
+      const result = await client.query(`SELECT * FROM chirps WHERE id = ${id}`);
+      const results = { 'results': (result) ? result.rows : null };
+      res.send(results)
       client.release();
     } catch (err) {
       console.error(err);
       console.log(process.env.DATABASE_URL);
       res.send("Error " + err);
     }
-  })
+  } else {
+    try {
+      const client = await pool.connect()
+      const result = await client.query('SELECT * FROM chirps');
+      const results = { 'results': (result) ? result.rows : null };
+      res.send(results)
+      client.release();
+    } catch (err) {
+      console.error(err);
+      console.log(process.env.DATABASE_URL);
+      res.send("Error " + err);
+    }
+  }
+});
 
 
 
-
-
-
-// routers for local db
+// routers for local db below
 
 // router.get('/:id?', async (req, res) => {
 //     let id = req.params.id;

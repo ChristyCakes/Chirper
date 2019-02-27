@@ -15,11 +15,9 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        fetch('http://127.0.0.1:3000/api/chirps')
+        fetch('/api/chirps')
             .then(response => response.json())    
-            // .then(response => response.text())
-            // .then(response => console.lot(response))
-            .then(data => this.setState({ chirps: data }))
+            .then(data => this.setState({ chirps: data.results }))
             .catch(err => {
                 alert("Error: Chirps failed to load");
                 console.log(err);
