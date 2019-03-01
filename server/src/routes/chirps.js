@@ -41,22 +41,36 @@ router.get('/:id?', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {         
-    let id = req.params.id;
-    try {
-      const client = await pool.connect()
-      const result = await client.query('DELETE FROM chirps WHERE id = $1', [id]);
-      const results = { 'results': (result) ? result.rows : null };
-      res.send(results)
-      client.release();
-    } catch (err) {
-        console.error(err);
-        res.sendStatus(500);
-    }
-    res.sendStatus(200);
+router.delete('/:id', async (req, res) => {
+  let id = req.params.id;
+  try {
+    const client = await pool.connect()
+    const result = await client.query('DELETE FROM chirps WHERE id = $1', [id]);
+    const results = { 'results': (result) ? result.rows : null };
+    res.send(results)
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+  res.sendStatus(200);
 })
 
-
+router.post('/', async (req, res) => {
+  let user = req.body.user
+  let text = req.body.text
+  try {
+    const client = await pool.connect()
+    const result = await client.query('INSERT INTO chirps(name, text) VALUES ($1, $1)', [user, text]);
+    const results = { 'results': (result) ? result.rows : null };
+    res.send(results)
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+  res.sendStatus(200);
+})
 
 
 
