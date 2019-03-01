@@ -18,7 +18,7 @@ class Edit extends Component {
 
     editChirp(event) {
         event.preventDefault();
-        fetch(`http://127.0.0.1:3000/api/chirps/${this.props.match.params.id}`, {
+        fetch(`/api/chirps/${this.props.match.params.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

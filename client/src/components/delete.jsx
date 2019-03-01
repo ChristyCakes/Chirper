@@ -7,7 +7,7 @@ class Delete extends Component {
 
     componentDidMount() {
         if (confirm("Confirm Delete")) {
-            fetch(`http://127.0.0.1:3000/api/chirps/${this.props.match.params.id}`, { method: "DELETE" })
+            fetch(`/api/chirps/${this.props.match.params.id}`, { method: "DELETE" })
                 .then(() => this.props.history.push('/'))
                 .catch(err => {
                     alert("Error: Chirp not deleted");

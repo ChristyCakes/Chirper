@@ -20,7 +20,7 @@ class NewChirp extends Component {
 
     postChirp(event) {
         event.preventDefault();
-        fetch('http://127.0.0.1:3000/api/chirps/', {
+        fetch('/api/chirps/', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
