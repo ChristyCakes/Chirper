@@ -41,6 +41,23 @@ router.get('/:id?', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {         
+    let id = req.params.id;
+    try {
+      const client = await pool.connect()
+      const result = await client.query('DELETE FROM chirps WHERE id = $1', [id]);
+      const results = { 'results': (result) ? result.rows : null };
+      res.send(results)
+      client.release();
+    } catch (err) {
+        console.error(err);
+        res.sendStatus(500);
+    }
+    res.sendStatus(200);
+})
+
+
+
 
 
 // routers for local db below
