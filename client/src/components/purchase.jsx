@@ -45,14 +45,6 @@ class Purchase extends Component {
                 <div className="flex center white">
                     <form className="flex column" onSubmit={this.submit}>
                         <label>
-                            <span className="block">UserName</span>
-                            <input
-                                className="purchaseinput"
-                                type="text"
-                                placeholder="UserName"
-                            />
-                        </label>
-                        <label>
                             <span className="block">Name on Card</span>
                             <input
                                 className="purchaseinput"
