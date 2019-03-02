@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
   let text = req.body.text
   try {
     const client = await pool.connect()
-    const result = await client.query('INSERT INTO chirps(name, text) VALUES ($1, $1)', [user, text]);
+    const result = await client.query('INSERT INTO chirps(name, text) VALUES($1, $2)', [user, text]);
     const results = { 'results': (result) ? result.rows : null };
     res.send(results)
     client.release();
