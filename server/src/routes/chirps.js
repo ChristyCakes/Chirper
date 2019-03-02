@@ -72,6 +72,21 @@ router.post('/', async (req, res) => {
   res.sendStatus(200);
 })
 
+router.put('/:id', async (req, res) => {
+  let id = req.params.id;
+  let text = req.body.text
+  try {
+    const client = await pool.connect()
+    const result = await client.query('UPDATE chirps SET text= $1 WHERE id = $2', [text, id]);
+    const results = { 'results': (result) ? result.rows : null };
+    res.send(results)
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+  res.sendStatus(200);
+})
 
 
 // routers for local db below
