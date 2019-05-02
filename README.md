@@ -1,6 +1,8 @@
 # Chirper App
 
-This app is like Twitter; you can read, create, edit, and delete tweets (chirps).  
+This app is like Twitter; you can read, create, edit, and delete tweets (chirps).
+
+This was an assigned project in my full stack web dev schooling.
 ### Chirper App includes:
 
 * JSX client React components
