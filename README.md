@@ -8,5 +8,6 @@ This was an assigned project in my full stack web dev schooling.
 * JSX client React components
 * React Router routes in both server and client
 * A RESTful Express.js server
+* Integration of the Stripe API for 'purchasing' followers
 * Originally set up on a local MySQL DB
 * Currently Deployed on Heroku using Postgresql DB
