@@ -2,8 +2,6 @@
 
 This app is like Twitter; you can read, create, edit, and delete tweets (chirps).
 
-## Visit the app here: https://mighty-journey-57948.herokuapp.com/
-
 ### Chirper App includes:
 
 * JSX client React components
@@ -11,4 +9,4 @@ This app is like Twitter; you can read, create, edit, and delete tweets (chirps)
 * A RESTful Express.js server
 * Integration of the Stripe API for 'purchasing' followers
 * Originally set up on a local MySQL DB
-* Currently Deployed on Heroku using Postgresql DB
+* Deployed on Heroku using Postgresql DB
